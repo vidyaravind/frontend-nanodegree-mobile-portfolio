@@ -423,6 +423,8 @@ var resizePizzas = function(size) {
 
 
   // Iterates through pizza elements on the page and changes their widths
+  // Updated the query selector to identify elements by Class Name for optimization
+  // width of the pizza is assigned based on the size
   function changePizzaSizes(size) {
     var newwidth;
     var randomPizza = document.getElementsByClassName("randomPizzaContainer");
@@ -489,7 +491,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  //var items = document.querySelectorAll('.mover');
+  //updated to identify element by className 
   var items = document.getElementsByClassName('mover');
   //moved the scroll calculation from the loop
   var scrollTop = document.body.scrollTop/1250;
@@ -497,6 +499,7 @@ function updatePositions() {
   for (var j = 0; j < 5; j++){
   phaseVal[j] = (Math.sin((scrollTop) + (j)) * 100);
   }
+  //moved the phase calculation to be calculated indepentently
   for (var i = 0; i < items.length; i++) {
     var phase =  phaseVal[(i % 5)];
     items[i].style.left = items[i].basicLeft + phase + 'px';
@@ -516,6 +519,7 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+// Reduces the number of pizzas to 20
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
